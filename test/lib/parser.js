@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var Parser = require('../lib/parser');
+var Parser = require('../../lib/parser');
 
 describe('Parser', function() {
     describe('interface', function() {

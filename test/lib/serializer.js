@@ -1,7 +1,7 @@
 'use strict';
 
 var expect = require('chai').expect;
-var Serializer = require('../lib/serializer');
+var Serializer = require('../../lib/serializer');
 
 describe('Serializer', function() {
     describe('interface', function() {

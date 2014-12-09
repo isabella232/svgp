@@ -101,6 +101,5 @@
   "validateLineBreaks": "LF",
   "validateQuoteMarks": "'",
   "validateParameterSeparator": ", ",
-  "disallowCapitalizedComments": true,
   "safeContextKeyword": "that"
 }
