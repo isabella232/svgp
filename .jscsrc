@@ -1,5 +1,13 @@
 {
-  "requireCurlyBraces": true,
+  "requireCurlyBraces": [
+    "if",
+    "else",
+    "for",
+    "while",
+    "do",
+    "try",
+    "catch"
+  ],
   "requireSpaceBeforeKeywords": true,
   "requireSpaceAfterKeywords": [
     "do",
@@ -57,7 +65,6 @@
     "for",
     "if",
     "switch",
-    "case",
     "try",
     "catch",
     "void",
