@@ -21,11 +21,11 @@ describe('lib/dom/comment', function() {
             expect(comment).to.be.an.instanceof(Comment);
         });
 
-        it('Comment() should have nodeType 8', function() {
+        it('Comment() should have .nodeType=8', function() {
             expect(comment.nodeType).to.be.equal(8);
         });
 
-        it('Comment() should have nodeValue "comment"', function() {
+        it('Comment() should have .nodeValue="comment"', function() {
             expect(comment.nodeValue).to.be.equal('comment');
         });
     });

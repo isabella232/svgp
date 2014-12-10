@@ -21,7 +21,7 @@ describe('lib/dom/document', function() {
             expect(document).to.be.an.instanceof(Document);
         });
 
-        it('Document() should have nodeType 9', function() {
+        it('Document() should have .nodeType=9', function() {
             expect(document.nodeType).to.be.equal(9);
         });
 

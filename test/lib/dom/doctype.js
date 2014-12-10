@@ -21,11 +21,11 @@ describe('lib/dom/text', function() {
             expect(doctype).to.be.an.instanceof(Doctype);
         });
 
-        it('Doctype() should have nodeType 10', function() {
+        it('Doctype() should have .nodeType=10', function() {
             expect(doctype.nodeType).to.be.equal(10);
         });
 
-        it('Doctype() should have nodeValue "data"', function() {
+        it('Doctype() should have .nodeValue="data"', function() {
             expect(doctype.nodeValue).to.be.equal('data');
         });
     });
