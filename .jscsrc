@@ -8,7 +8,11 @@
     "try",
     "catch"
   ],
-  "requireSpaceBeforeKeywords": true,
+  "requireSpaceBeforeKeywords": [
+    "else",
+    "while",
+    "catch"
+  ],
   "requireSpaceAfterKeywords": [
     "do",
     "for",
