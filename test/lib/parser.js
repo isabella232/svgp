@@ -19,7 +19,7 @@ function parseFixtureData(fixtureFilename) {
     return parser.parse(data);
 }
 
-describe('Parser', function() {
+describe('lib/parser', function() {
     describe('interface', function() {
         it('Parser should exist', function() {
             expect(Parser).to.exist;

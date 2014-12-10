@@ -21,7 +21,7 @@ function serializeFixtureData(fixtureFilename) {
     return serializer.serialize(data);
 }
 
-describe('Serializer', function() {
+describe('lib/serializer', function() {
     describe('interface', function() {
         it('Serializer should exist', function() {
             expect(Serializer).to.exist;
