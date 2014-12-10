@@ -5,6 +5,13 @@ var path = require('path');
 var expect = require('chai').expect;
 var Parser = require('../../lib/parser');
 
+function getFixtureData(fixtureFilename) {
+    var fixturePath = path.resolve(__dirname, './fixtures/', fixtureFilename);
+    var data = fs.readFileSync(fixturePath, 'utf-8');
+
+    return data;
+}
+
 describe('Parser', function() {
     describe('interface', function() {
         it('Parser should exist', function() {
@@ -50,16 +57,14 @@ describe('Parser', function() {
         });
 
         it('error', function() {
-            var fixturePath = path.resolve(__dirname, './fixtures/error.xml');
-            var data = fs.readFileSync(fixturePath, 'utf-8');
+            var data = getFixtureData('error.xml');
             var parser = this.parser.parse.bind(this.parser, data);
 
             expect(parser).to.throw('Non-whitespace before first tag');
         });
 
         it('simple element', function() {
-            var fixturePath = path.resolve(__dirname, './fixtures/element.simple.xml');
-            var data = fs.readFileSync(fixturePath, 'utf-8');
+            var data = getFixtureData('element.simple.xml');
             var childNodes;
 
             data = this.parser.parse(data);
@@ -72,8 +77,7 @@ describe('Parser', function() {
         });
 
         it('element nesting', function() {
-            var fixturePath = path.resolve(__dirname, './fixtures/element.nesting.xml');
-            var data = fs.readFileSync(fixturePath, 'utf-8');
+            var data = getFixtureData('element.nesting.xml');
             var childNodes;
 
             data = this.parser.parse(data);
@@ -85,8 +89,7 @@ describe('Parser', function() {
         });
 
         it('element attrs', function() {
-            var fixturePath = path.resolve(__dirname, './fixtures/element.attrs.xml');
-            var data = fs.readFileSync(fixturePath, 'utf-8');
+            var data = getFixtureData('element.attrs.xml');
             var attrs;
 
             data = this.parser.parse(data);
@@ -99,8 +102,7 @@ describe('Parser', function() {
         });
 
         it('text', function() {
-            var fixturePath = path.resolve(__dirname, './fixtures/text.xml');
-            var data = fs.readFileSync(fixturePath, 'utf-8');
+            var data = getFixtureData('text.xml');
             var root;
 
             data = this.parser.parse(data);
@@ -112,8 +114,7 @@ describe('Parser', function() {
         });
 
         it('comment', function() {
-            var fixturePath = path.resolve(__dirname, './fixtures/comment.xml');
-            var data = fs.readFileSync(fixturePath, 'utf-8');
+            var data = getFixtureData('comment.xml');
             var childNodes;
 
             data = this.parser.parse(data);
@@ -125,8 +126,7 @@ describe('Parser', function() {
         });
 
         it('doctype', function() {
-            var fixturePath = path.resolve(__dirname, './fixtures/doctype.xml');
-            var data = fs.readFileSync(fixturePath, 'utf-8');
+            var data = getFixtureData('doctype.xml');
             var childNodes;
 
             data = this.parser.parse(data);
@@ -138,8 +138,7 @@ describe('Parser', function() {
         });
 
         it('processing instruction', function() {
-            var fixturePath = path.resolve(__dirname, './fixtures/procinst.xml');
-            var data = fs.readFileSync(fixturePath, 'utf-8');
+            var data = getFixtureData('procinst.xml');
             var childNodes;
 
             data = this.parser.parse(data);
@@ -152,8 +151,7 @@ describe('Parser', function() {
         });
 
         it('CDATA', function() {
-            var fixturePath = path.resolve(__dirname, './fixtures/cdata.xml');
-            var data = fs.readFileSync(fixturePath, 'utf-8');
+            var data = getFixtureData('cdata.xml');
             var root;
 
             data = this.parser.parse(data);
