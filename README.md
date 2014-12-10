@@ -6,7 +6,7 @@
 [![coveralls](https://img.shields.io/coveralls/svg/svgp.svg?style=flat-square)](https://coveralls.io/r/svg/svgp)
 [![climate](http://img.shields.io/codeclimate/github/svg/svgp.svg?style=flat-square)](https://codeclimate.com/github/svg/svgp/code)
 
-**SVG P**arser, DOM API and Serializer.
+**SVG P**arser, DOM API provider and Serializer.
 
 ## Status
 
