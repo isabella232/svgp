@@ -1,7 +1,25 @@
 'use strict';
 
+var fs = require('fs');
+var path = require('path');
 var expect = require('chai').expect;
+var Parser = require('../../lib/parser');
 var Serializer = require('../../lib/serializer');
+
+function parseFixtureData(fixtureFilename) {
+    var fixturePath = path.resolve(__dirname, '../fixtures/', fixtureFilename);
+    var data = fs.readFileSync(fixturePath, 'utf-8');
+    var parser = Parser();
+
+    return parser.parse(data);
+}
+
+function serializeFixtureData(fixtureFilename) {
+    var data = parseFixtureData(fixtureFilename);
+    var serializer = Serializer();
+
+    return serializer.serialize(data);
+}
 
 describe('Serializer', function() {
     describe('interface', function() {
@@ -47,6 +65,92 @@ describe('Serializer', function() {
             });
 
             expect(serializer).to.have.deep.property('opts.pretty', true);
+        });
+    });
+
+    describe('serialize()', function() {
+        before(function() {
+            this.serializer = Serializer();
+        });
+
+        it('simple element', function() {
+            var data = serializeFixtureData('element.simple.xml');
+
+            expect(data).to.be.equal(
+                '<svg/>'
+            );
+        });
+
+        it('element nesting', function() {
+            var data = serializeFixtureData('element.nesting.xml');
+
+            expect(data).to.be.equal(
+                '<svg><g/></svg>'
+            );
+        });
+
+        it('element attrs', function() {
+            var data = serializeFixtureData('element.attrs.xml');
+
+            expect(data).to.be.equal(
+                '<svg attr="val" xmlns:xlink="http://www.w3.org/1999/xlink"/>'
+            );
+        });
+
+        it('text', function() {
+            var data = serializeFixtureData('text.xml');
+
+            expect(data).to.be.equal(
+                '<svg>text</svg>'
+            );
+        });
+
+        it('comment', function() {
+            var data = serializeFixtureData('comment.xml');
+
+            expect(data).to.be.equal(
+                '<!--comment--><svg/>'
+            );
+        });
+
+        it('doctype', function() {
+            var data = serializeFixtureData('doctype.xml');
+
+            expect(data).to.be.equal(
+                '<!DOCTYPE doctype string><svg/>'
+            );
+        });
+
+        it('processing instruction', function() {
+            var data = serializeFixtureData('procinst.xml');
+
+            expect(data).to.be.equal(
+                '<?xml version="1.0" encoding="utf-8"?><svg/>'
+            );
+        });
+
+        it('CDATA', function() {
+            var data = serializeFixtureData('cdata.xml');
+
+            expect(data).to.be.equal(
+                '<svg><![CDATA[raw]]></svg>'
+            );
+        });
+
+        it('pretty', function() {
+            var data = parseFixtureData('multiple.nesting.xml');
+
+            data = Serializer({ pretty: true }).serialize(data);
+
+            expect(data).to.be.equal(
+                '<svg>\n' +
+                '    <g>\n' +
+                '        <g>\n' +
+                '            text1 text2\n' +
+                '        </g>\n' +
+                '    </g>\n' +
+                '</svg>\n'
+            );
         });
     });
 });

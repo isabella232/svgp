@@ -6,10 +6,17 @@ var expect = require('chai').expect;
 var Parser = require('../../lib/parser');
 
 function getFixtureData(fixtureFilename) {
-    var fixturePath = path.resolve(__dirname, './fixtures/', fixtureFilename);
+    var fixturePath = path.resolve(__dirname, '../fixtures/', fixtureFilename);
     var data = fs.readFileSync(fixturePath, 'utf-8');
 
     return data;
+}
+
+function parseFixtureData(fixtureFilename) {
+    var parser = Parser();
+    var data = getFixtureData(fixtureFilename);
+
+    return parser.parse(data);
 }
 
 describe('Parser', function() {
@@ -52,23 +59,17 @@ describe('Parser', function() {
     });
 
     describe('parse()', function() {
-        before(function() {
-            this.parser = Parser();
-        });
-
         it('error', function() {
             var data = getFixtureData('error.xml');
-            var parser = this.parser.parse.bind(this.parser, data);
+            var parser = Parser();
+            var parse = parser.parse.bind(parser, data);
 
-            expect(parser).to.throw('Non-whitespace before first tag');
+            expect(parse).to.throw('Non-whitespace before first tag');
         });
 
         it('simple element', function() {
-            var data = getFixtureData('element.simple.xml');
-            var childNodes;
-
-            data = this.parser.parse(data);
-            childNodes = data.childNodes;
+            var data = parseFixtureData('element.simple.xml');
+            var childNodes = data.childNodes;
 
             expect(childNodes.length).to.be.equal(1);
             expect(childNodes[0].nodeType).to.be.equal(1);
@@ -77,11 +78,8 @@ describe('Parser', function() {
         });
 
         it('element nesting', function() {
-            var data = getFixtureData('element.nesting.xml');
-            var childNodes;
-
-            data = this.parser.parse(data);
-            childNodes = data.childNodes[0];
+            var data = parseFixtureData('element.nesting.xml');
+            var childNodes = data.childNodes[0];
 
             expect(childNodes.childNodes.length).to.be.equal(1);
             expect(childNodes.childNodes[0].nodeType).to.be.equal(1);
@@ -89,11 +87,8 @@ describe('Parser', function() {
         });
 
         it('element attrs', function() {
-            var data = getFixtureData('element.attrs.xml');
-            var attrs;
-
-            data = this.parser.parse(data);
-            attrs = data.childNodes[0].attributes;
+            var data = parseFixtureData('element.attrs.xml');
+            var attrs = data.childNodes[0].attributes;
 
             expect(Object.keys(attrs).length).to.be.equal(2);
             expect(attrs['xmlns:xlink'].name).to.be.equal('xlink');
@@ -102,11 +97,8 @@ describe('Parser', function() {
         });
 
         it('text', function() {
-            var data = getFixtureData('text.xml');
-            var root;
-
-            data = this.parser.parse(data);
-            root = data.childNodes[0];
+            var data = parseFixtureData('text.xml');
+            var root = data.childNodes[0];
 
             expect(root.childNodes.length).to.be.equal(1);
             expect(root.childNodes[0].nodeType).to.be.equal(3);
@@ -114,11 +106,8 @@ describe('Parser', function() {
         });
 
         it('comment', function() {
-            var data = getFixtureData('comment.xml');
-            var childNodes;
-
-            data = this.parser.parse(data);
-            childNodes = data.childNodes;
+            var data = parseFixtureData('comment.xml');
+            var childNodes = data.childNodes;
 
             expect(childNodes.length).to.be.equal(2);
             expect(childNodes[0].nodeType).to.be.equal(8);
@@ -126,11 +115,8 @@ describe('Parser', function() {
         });
 
         it('doctype', function() {
-            var data = getFixtureData('doctype.xml');
-            var childNodes;
-
-            data = this.parser.parse(data);
-            childNodes = data.childNodes;
+            var data = parseFixtureData('doctype.xml');
+            var childNodes = data.childNodes;
 
             expect(childNodes.length).to.be.equal(2);
             expect(childNodes[0].nodeType).to.be.equal(10);
@@ -138,11 +124,8 @@ describe('Parser', function() {
         });
 
         it('processing instruction', function() {
-            var data = getFixtureData('procinst.xml');
-            var childNodes;
-
-            data = this.parser.parse(data);
-            childNodes = data.childNodes;
+            var data = parseFixtureData('procinst.xml');
+            var childNodes = data.childNodes;
 
             expect(childNodes.length).to.be.equal(2);
             expect(childNodes[0].nodeType).to.be.equal(7);
@@ -151,11 +134,8 @@ describe('Parser', function() {
         });
 
         it('CDATA', function() {
-            var data = getFixtureData('cdata.xml');
-            var root;
-
-            data = this.parser.parse(data);
-            root = data.childNodes[0];
+            var data = parseFixtureData('cdata.xml');
+            var root = data.childNodes[0];
 
             expect(root.childNodes.length).to.be.equal(1);
             expect(root.childNodes[0].nodeType).to.be.equal(4);
