@@ -129,8 +129,7 @@ describe('lib/parser', function() {
 
             expect(childNodes.length).to.be.equal(2);
             expect(childNodes[0].nodeType).to.be.equal(7);
-            expect(childNodes[0].target).to.be.equal('xml');
-            expect(childNodes[0].data).to.be.equal('version="1.0" encoding="utf-8"');
+            expect(childNodes[0].nodeValue).to.be.equal('xml version="1.0" encoding="utf-8"');
         });
 
         it('CDATA', function() {
