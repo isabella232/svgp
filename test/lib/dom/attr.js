@@ -10,7 +10,7 @@ var attr = Attr({
     prefix: 'prefix'
 });
 
-describe('lib/dom/comment', function() {
+describe('lib/dom/attr', function() {
     describe('interface', function() {
         it('Attr should exist', function() {
             expect(Attr).to.exist;
