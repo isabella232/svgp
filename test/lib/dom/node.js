@@ -11,7 +11,7 @@ var node = Node({
     nodeValue: 'text',
     attributes: {
         test: Attr({
-            name: 'name',
+            name: 'test',
             value: 'value'
         })
     },
