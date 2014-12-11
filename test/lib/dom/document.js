@@ -31,7 +31,6 @@ describe('lib/dom/document', function() {
             expect(document).to.have.property('createComment').that.is.a('function');
             expect(document).to.have.property('createProcessingInstruction').that.is.a('function');
             expect(document).to.have.property('createCDATASection').that.is.a('function');
-            expect(document).to.have.property('createDocumentType').that.is.a('function');
         });
     });
 
@@ -67,12 +66,6 @@ describe('lib/dom/document', function() {
             var elem = document.createCDATASection('data');
 
             expect(elem.nodeType).to.be.equal(4);
-        });
-
-        it('createDocumentType()', function() {
-            var elem = document.createDocumentType('data');
-
-            expect(elem.nodeType).to.be.equal(10);
         });
     });
 });
