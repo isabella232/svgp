@@ -18,8 +18,8 @@
   },
   "devDependencies": {
     "eslint": "0.10.x",
-    "jscs": "1.8.x",
-    "mocha": "2.0.x",
+    "jscs": "1.9.x",
+    "mocha": "2.1.x",
     "chai": "1.10.x",
     "unit-coverage": "3.2.x",
     "coveralls": "2.11.x"
