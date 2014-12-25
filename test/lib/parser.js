@@ -84,7 +84,7 @@ describe('lib/parser', function() {
             expect(childNodes.childNodes.length).to.be.equal(1);
             expect(childNodes.childNodes[0].nodeType).to.be.equal(1);
             expect(childNodes.childNodes[0].tagName).to.be.equal('g');
-            expect(childNodes.childNodes[0].parentNode).to.be.equal(childNodes);
+            expect(childNodes.childNodes[0].parentNode.tagName).to.be.equal(childNodes.tagName);
         });
 
         it('element attrs', function() {
@@ -104,7 +104,6 @@ describe('lib/parser', function() {
             expect(root.childNodes.length).to.be.equal(1);
             expect(root.childNodes[0].nodeType).to.be.equal(3);
             expect(root.childNodes[0].nodeValue).to.be.equal('text');
-            expect(root.childNodes[0].parentNode).to.be.equal(root);
         });
 
         it('comment', function() {
@@ -114,7 +113,6 @@ describe('lib/parser', function() {
             expect(childNodes.length).to.be.equal(2);
             expect(childNodes[0].nodeType).to.be.equal(8);
             expect(childNodes[0].nodeValue).to.be.equal('comment');
-            expect(childNodes[0].parentNode).to.be.equal(data);
         });
 
         it('doctype', function() {
@@ -124,7 +122,6 @@ describe('lib/parser', function() {
             expect(childNodes.length).to.be.equal(2);
             expect(childNodes[0].nodeType).to.be.equal(10);
             expect(childNodes[0].nodeValue).to.be.equal('doctype string');
-            expect(childNodes[0].parentNode).to.be.equal(data);
         });
 
         it('processing instruction', function() {
@@ -134,7 +131,6 @@ describe('lib/parser', function() {
             expect(childNodes.length).to.be.equal(2);
             expect(childNodes[0].nodeType).to.be.equal(7);
             expect(childNodes[0].nodeValue).to.be.equal('xml version="1.0" encoding="utf-8"');
-            expect(childNodes[0].parentNode).to.be.equal(data);
         });
 
         it('CDATA', function() {
@@ -144,7 +140,6 @@ describe('lib/parser', function() {
             expect(root.childNodes.length).to.be.equal(1);
             expect(root.childNodes[0].nodeType).to.be.equal(4);
             expect(root.childNodes[0].nodeValue).to.be.equal('raw');
-            expect(root.childNodes[0].parentNode).to.be.equal(root);
         });
     });
 });
