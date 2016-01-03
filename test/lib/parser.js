@@ -141,5 +141,13 @@ describe('lib/parser', function() {
             expect(root.childNodes[0].nodeType).to.be.equal(4);
             expect(root.childNodes[0].nodeValue).to.be.equal('raw');
         });
+
+        it('entities', function() {
+            var data = parseFixtureData('entities.xml');
+            var attrs = data.lastChild.attributes;
+
+            expect(attrs['xmlns:x'].value).to.be.equal('http://ns.adobe.com/Extensibility/1.0/');
+            expect(attrs['xmlns:graph'].value).to.be.equal('http://ns.adobe.com/Graphs/1.0/');
+        });
     });
 });
