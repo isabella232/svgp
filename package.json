@@ -14,14 +14,14 @@
   },
   "main": "./index.js",
   "dependencies": {
-    "sax": "0.6.x"
+    "sax": "1.1.x"
   },
   "devDependencies": {
-    "eslint": "0.10.x",
-    "jscs": "1.9.x",
-    "mocha": "2.1.x",
-    "chai": "1.10.x",
-    "unit-coverage": "3.2.x",
+    "eslint": "1.10.x",
+    "jscs": "2.7.x",
+    "mocha": "2.3.x",
+    "chai": "3.4.x",
+    "unit-coverage": "4.0.x",
     "coveralls": "2.11.x"
   },
   "scripts": {

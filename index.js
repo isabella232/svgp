@@ -9,4 +9,5 @@ var Serializer = require('./lib/serializer');
 data = Parser().parse(data);
 data = Serializer({ pretty: true }).serialize(data);
 
+/*eslint no-console: 0*/
 console.log(data);
