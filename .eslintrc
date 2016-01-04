@@ -90,7 +90,7 @@
     "no-script-url": 0,
     "no-self-compare": 2,
     "no-sequences": 2,
-    "no-shadow": 2,
+    "no-shadow": 0,
     "no-shadow-restricted-names": 2,
     "no-whitespace-before-property": 0,
     "no-spaced-func": 0,
